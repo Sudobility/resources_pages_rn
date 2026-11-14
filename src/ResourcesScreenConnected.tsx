@@ -1,5 +1,5 @@
 /**
- * @fileoverview Connected resources screen: reads the catalog from
+ * @fileoverview Connected resources screen: reads the sectioned catalog from
  * resources_client's `useResources` (the host must have called
  * `initializeResources`) and opens tapped resources with RN `Linking`.
  */
@@ -13,8 +13,8 @@ import type {
 } from './types';
 
 export interface ResourcesScreenConnectedProps {
-  /** Locale to load, usually the app's current UI language. */
-  locale?: string;
+  /** Locale to load, usually the app's current UI language. Falls back to en upstream. */
+  locale: string;
   labels: ResourcesScreenLabels;
   /** Override the domain formatter; defaults to the client's shortenDomain. */
   formatters?: Partial<ResourcesScreenFormatters>;
@@ -30,10 +30,10 @@ export function ResourcesScreenConnected({
   onResourcePress,
   className,
 }: ResourcesScreenConnectedProps) {
-  const { resources, isLoading, error } = useResources(locale);
+  const { sections, isLoading, error } = useResources(locale);
   return (
     <ResourcesScreen
-      resources={resources}
+      sections={sections}
       isLoading={isLoading}
       error={error?.message ?? null}
       labels={labels}

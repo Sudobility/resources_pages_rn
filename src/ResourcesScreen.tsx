@@ -1,8 +1,8 @@
 /**
- * @fileoverview The resources screen: a vertical list of resource tiles.
- * Presentational — data, state, copy and formatters via props; the host wraps
- * it in a ScrollView + safe area. Loading / empty / error / content render as
- * four independent blocks, matching the web ResourcesPage.
+ * @fileoverview The resources screen: a heading per section over a vertical
+ * list of resource tiles. Presentational — data, state, copy and formatters via
+ * props; the host wraps it in a ScrollView + safe area. Loading / empty / error
+ * / content render as independent blocks, matching the web ResourcesPage.
  */
 import { View, Text } from 'react-native';
 import { designTokens } from '@sudobility/design';
@@ -13,7 +13,7 @@ import type { ResourcesScreenProps } from './types';
 const { size, weight } = designTokens.typography;
 
 export function ResourcesScreen({
-  resources,
+  sections,
   isLoading,
   error,
   labels,
@@ -53,7 +53,7 @@ export function ResourcesScreen({
       {isLoading && <LoadingSpinner />}
 
       {!isLoading &&
-        resources.length === 0 &&
+        sections.length === 0 &&
         (emptyStateComponent ?? (
           <Text
             className={[size.sm, 'py-8 text-center text-muted-foreground'].join(
@@ -64,18 +64,32 @@ export function ResourcesScreen({
           </Text>
         ))}
 
-      {!isLoading && resources.length > 0 && (
-        <View className='gap-3'>
-          {resources.map(resource => (
-            <ResourceTile
-              key={resource.id}
-              resource={resource}
-              shortenDomain={formatters.shortenDomain}
-              onPress={onResourcePress}
-            />
-          ))}
-        </View>
-      )}
+      {!isLoading &&
+        sections.map(section => (
+          <View key={section.id} className='mb-8'>
+            {section.title !== '' && (
+              <Text
+                className={[
+                  size.xl,
+                  weight.semibold,
+                  'mb-3 text-foreground',
+                ].join(' ')}
+              >
+                {section.title}
+              </Text>
+            )}
+            <View className='gap-3'>
+              {section.resources.map(resource => (
+                <ResourceTile
+                  key={resource.id}
+                  resource={resource}
+                  shortenDomain={formatters.shortenDomain}
+                  onPress={onResourcePress}
+                />
+              ))}
+            </View>
+          </View>
+        ))}
     </View>
   );
 }

@@ -4,6 +4,7 @@ export { ResourcesScreenConnected } from './ResourcesScreenConnected';
 
 export type {
   Resource,
+  ResourceSectionWithResources,
   ResourcesScreenProps,
   ResourcesScreenLabels,
   ResourcesScreenFormatters,

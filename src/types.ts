@@ -1,17 +1,21 @@
 /**
  * Prop contracts for the presentational RN resources components.
- * Mirror of resources_pages' web types. Copy and i18n via `labels`, derived
- * values via `formatters`; no component here fetches or opens a URL itself.
+ * The catalog is sectioned: a heading per section over a list of tiles.
+ * Copy via `labels`, derived values via `formatters`; no fetching or URL
+ * opening here. Mirror of resources_pages' web types.
  */
 import type { ReactNode } from 'react';
-import type { Resource } from '@sudobility/resources_client';
+import type {
+  Resource,
+  ResourceSectionWithResources,
+} from '@sudobility/resources_client';
 
-export type { Resource };
+export type { Resource, ResourceSectionWithResources };
 
 export interface ResourcesScreenLabels {
-  /** Heading above the list. Pass '' to suppress it. */
+  /** Heading above the whole screen. Pass '' to suppress it. */
   title: string;
-  /** Shown (muted, centered) when there are no resources. */
+  /** Shown (muted, centered) when there are no sections. */
   empty: string;
   /** Title of the error block. */
   errorTitle: string;
@@ -30,7 +34,7 @@ export interface ResourceTileProps {
 }
 
 export interface ResourcesScreenProps {
-  resources: Resource[];
+  sections: ResourceSectionWithResources[];
   isLoading: boolean;
   error: string | null;
   labels: ResourcesScreenLabels;
