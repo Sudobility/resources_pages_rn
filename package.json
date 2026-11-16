@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/resources_pages_rn",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "React Native UI components for the Sudobility resources catalog (tile list of language-specific helper links)",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -27,15 +27,15 @@
   "peerDependencies": {
     "react": ">=18",
     "react-native": ">=0.74",
-    "@sudobility/resources_client": "^0.1.0",
-    "@sudobility/design": "^1.1.71",
-    "@sudobility/types": "^1.9.79"
+    "@sudobility/resources_client": "^0.1.4",
+    "@sudobility/design": "^1.1.72",
+    "@sudobility/types": "^1.11.2"
   },
   "devDependencies": {
     "@eslint/js": "~10.0.1",
-    "@sudobility/design": "^1.1.71",
-    "@sudobility/resources_client": "^0.1.0",
-    "@sudobility/types": "^1.9.79",
+    "@sudobility/design": "^1.1.72",
+    "@sudobility/resources_client": "^0.1.4",
+    "@sudobility/types": "^1.11.2",
     "@types/react": "~19.3.0",
     "@typescript-eslint/eslint-plugin": "~8.72.0",
     "@typescript-eslint/parser": "~8.72.0",
