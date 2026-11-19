@@ -1,6 +1,6 @@
 {
   "name": "@sudobility/resources_pages_rn",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "React Native UI components for the Sudobility resources catalog (tile list of language-specific helper links)",
   "main": "dist/index.js",
   "module": "dist/index.js",

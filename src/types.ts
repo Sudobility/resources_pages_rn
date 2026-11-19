@@ -19,6 +19,8 @@ export interface ResourcesScreenLabels {
   empty: string;
   /** Title of the error block. */
   errorTitle: string;
+  /** Accessible label for a tile's open action, given the resource title. */
+  openAriaLabel?: (title: string) => string;
 }
 
 export interface ResourcesScreenFormatters {
@@ -31,6 +33,7 @@ export interface ResourceTileProps {
   shortenDomain: (url: string) => string;
   /** Called when the tile is tapped; the connected screen opens the URL. */
   onPress: (resource: Resource) => void;
+  openAriaLabel?: (title: string) => string;
 }
 
 export interface ResourcesScreenProps {

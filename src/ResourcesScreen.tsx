@@ -85,6 +85,7 @@ export function ResourcesScreen({
                   resource={resource}
                   shortenDomain={formatters.shortenDomain}
                   onPress={onResourcePress}
+                  openAriaLabel={labels.openAriaLabel}
                 />
               ))}
             </View>

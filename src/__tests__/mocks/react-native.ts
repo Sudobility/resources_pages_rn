@@ -11,9 +11,38 @@ const StyleSheet = {
   flatten: (style: unknown) => style,
 };
 
+/**
+ * RN-only props → what a DOM node (and a spec) understands. Accessibility
+ * props become their ARIA equivalents so a spec can assert on them; the rest
+ * are either carried as `data-*` or dropped.
+ */
+function toDomProps(
+  name: string,
+  {
+    accessible: _accessible,
+    accessibilityRole,
+    accessibilityLabel,
+    accessibilityState,
+    accessibilityIgnoresInvertColors: _accessibilityIgnoresInvertColors,
+    numberOfLines,
+    resizeMode,
+    source,
+    ...rest
+  }: Record<string, any>
+): Record<string, any> {
+  const domProps: Record<string, any> = { ...rest, 'data-testid': name };
+  if (accessibilityRole) domProps.role = accessibilityRole;
+  if (accessibilityLabel) domProps['aria-label'] = accessibilityLabel;
+  if (accessibilityState?.busy) domProps['aria-busy'] = 'true';
+  if (numberOfLines) domProps['data-number-of-lines'] = numberOfLines;
+  if (resizeMode) domProps['data-resize-mode'] = resizeMode;
+  if (source?.uri) domProps.src = source.uri;
+  return domProps;
+}
+
 const createMockComponent = (name: string, tag = 'div') => {
   const Component = ({ onPress, children, ...rest }: Record<string, any>) => {
-    const domProps: Record<string, any> = { ...rest, 'data-testid': name };
+    const domProps = toDomProps(name, rest);
     if (onPress) domProps.onClick = onPress;
     return React.createElement(tag, domProps, children);
   };

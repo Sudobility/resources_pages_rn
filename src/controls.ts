@@ -1,7 +1,7 @@
 /**
  * The classes this package's controls wear, read from the design system.
  *
- * The React Native mirror of @sudobility/consumables_pages' controls.ts. On the
+ * The React Native mirror of @sudobility/resources_pages' controls.ts. On the
  * web a `<button>` with background + text classes styles both itself and its
  * label; in React Native a `Pressable`/`TouchableOpacity` cannot colour the
  * `Text` inside it, so each control is a pair — the container classes and the

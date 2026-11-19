@@ -1,7 +1,7 @@
 /**
  * Every colour in this package is the host's theme's.
  *
- * The React Native mirror of @sudobility/consumables_pages' design-system test.
+ * The React Native mirror of @sudobility/resources_pages' design-system test.
  * Two failures it guards against, both shipped, both invisible to the other
  * tests here:
  *

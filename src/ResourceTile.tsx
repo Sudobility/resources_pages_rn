@@ -14,17 +14,23 @@ export function ResourceTile({
   resource,
   shortenDomain,
   onPress,
+  openAriaLabel,
 }: ResourceTileProps) {
   return (
     <TouchableOpacity
       onPress={() => onPress(resource)}
       accessibilityRole='link'
-      accessibilityLabel={`Open ${resource.title}`}
+      accessibilityLabel={
+        openAriaLabel ? openAriaLabel(resource.title) : `Open ${resource.title}`
+      }
       className='flex-row gap-4 rounded-xl border border-border bg-card p-4'
     >
       {resource.iconUrl ? (
         <Image
           source={{ uri: resource.iconUrl }}
+          // The web tile's `object-contain`: a favicon is shown whole, never
+          // cropped to the square (React Native's default is `cover`).
+          resizeMode='contain'
           accessibilityIgnoresInvertColors
           className='h-10 w-10 rounded-md'
         />
